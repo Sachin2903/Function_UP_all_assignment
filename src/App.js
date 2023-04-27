@@ -1,10 +1,10 @@
 
 import './App.css';
-import { NameUpdate } from './nameUpdate/nameUpdate';
+import { Luckygame } from './component/luckyname.js';
 function App() {
   return (
     <div className="App">
-      <NameUpdate/>
+      <Luckygame/>
     </div>
   );
 }

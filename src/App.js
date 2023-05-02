@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { Usercard } from "./components/organisms/usercard/usercard.js"
 import './App.css';
-
+import { useState } from 'react';
+import { Button } from "./components/Atoms/button/button.js";
 function App() {
+
+  const [a, seta] = useState([])
+  async function changeset() {
+    const responce = await fetch("https://reqres.in/api/users/")
+    const cardValueObj = await responce.json();
+    seta(cardValueObj.data)
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Button btnclass="btn" btnclickfun={changeset} btnname="Get Users" />
+
+      <div className='div2'>
+
+        {
+          a.map((e, i) => <Usercard key={i * e.id} details={e} divclass="carddiv" />)
+        }
+
+      </div>
+
     </div>
   );
 }
